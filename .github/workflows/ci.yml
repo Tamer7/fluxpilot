@@ -27,8 +27,20 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run syntax check
-      run: python -m py_compile main.py modules/*.py
+    - name: Run syntax check - Main
+      run: python -m py_compile main.py
+
+    - name: Run syntax check - Modules (Unix)
+      if: runner.os != 'Windows'
+      run: python -m py_compile modules/*.py
+
+    - name: Run syntax check - Modules (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        python -m py_compile modules/__init__.py
+        python -m py_compile modules/profile_manager.py
+        python -m py_compile modules/process_runner.py
+        python -m py_compile modules/ports_checker.py
 
     - name: Check imports
       run: python -c "from modules.profile_manager import load_profiles; from modules.process_runner import ProcessRunner; from modules.ports_checker import gather_port_entries; print('All imports successful')"
