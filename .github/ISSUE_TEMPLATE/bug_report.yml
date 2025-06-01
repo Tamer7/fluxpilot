@@ -1,0 +1,100 @@
+name: 🐛 Bug Report
+description: File a bug report to help us improve FluxPilot
+title: "[Bug]: "
+labels: ["bug", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Please provide as much detail as possible.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear and concise description of what the bug is.
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: What should have happened?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: operating-system
+    attributes:
+      label: Operating System
+      description: What operating system are you using?
+      options:
+        - Windows 10
+        - Windows 11
+        - macOS 10.15+
+        - macOS 11.0+
+        - macOS 12.0+
+        - Ubuntu 20.04
+        - Ubuntu 22.04
+        - Other Linux
+        - Other (please specify in additional context)
+    validations:
+      required: true
+
+  - type: input
+    id: python-version
+    attributes:
+      label: Python Version
+      description: What version of Python are you using?
+      placeholder: e.g., 3.9.0, 3.10.2
+    validations:
+      required: true
+
+  - type: input
+    id: fluxpilot-version
+    attributes:
+      label: FluxPilot Version
+      description: What version of FluxPilot are you using?
+      placeholder: e.g., 1.0.0, latest from main branch
+
+  - type: textarea
+    id: error-messages
+    attributes:
+      label: Error Messages
+      description: If applicable, copy and paste any error messages here.
+      render: shell
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here. Screenshots are very helpful!
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true
+        - label: I have provided all the requested information
+          required: true 

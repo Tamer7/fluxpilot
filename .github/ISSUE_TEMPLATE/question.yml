@@ -1,0 +1,54 @@
+name: ❓ Question
+description: Ask a question about FluxPilot
+title: "[Question]: "
+labels: ["question"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your question! Please check the [README](https://github.com/Tamer7/fluxpilot/blob/main/README.md) first to see if your question is already answered.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: Ask your question here...
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Provide any relevant context or what you're trying to achieve
+      placeholder: I'm trying to... / I want to understand... / I'm having trouble with...
+
+  - type: textarea
+    id: attempted-solutions
+    attributes:
+      label: What have you tried?
+      description: Describe what you've already tried or researched
+      placeholder: I've looked at... / I've tried... / I've read...
+
+  - type: dropdown
+    id: experience-level
+    attributes:
+      label: Experience Level
+      description: How familiar are you with FluxPilot?
+      options:
+        - New to FluxPilot
+        - Some experience with FluxPilot
+        - Experienced FluxPilot user
+        - Advanced user
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      options:
+        - label: I have read the documentation
+          required: true
+        - label: I have searched existing issues for similar questions
+          required: true 

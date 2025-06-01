@@ -5,6 +5,7 @@ import signal
 import platform
 import time
 
+
 class ProcessRunner:
     """
     Manages running a list of steps (shell commands + working directories) in parallel,
@@ -20,8 +21,8 @@ class ProcessRunner:
         self.steps = steps
         self.on_output = on_output
         self.on_finish = on_finish
-        self.processes = []    # list of subprocess.Popen objects
-        self.threads = []      # list of threads streaming each process’s stdout
+        self.processes = []  # list of subprocess.Popen objects
+        self.threads = []  # list of threads streaming each process’s stdout
         self.is_running = False
         self.current_step = 0
         self.total_steps = len(steps)
@@ -61,7 +62,7 @@ class ProcessRunner:
                         stdout=subprocess.PIPE,
                         stderr=subprocess.STDOUT,
                         text=True,
-                        creationflags=subprocess.CREATE_NEW_PROCESS_GROUP
+                        creationflags=subprocess.CREATE_NEW_PROCESS_GROUP,
                     )
                 else:
                     # On Unix, preexec_fn=os.setsid → new session/process group
@@ -72,7 +73,7 @@ class ProcessRunner:
                         stdout=subprocess.PIPE,
                         stderr=subprocess.STDOUT,
                         text=True,
-                        preexec_fn=os.setsid
+                        preexec_fn=os.setsid,
                     )
                 self.processes.append(p)
 
@@ -85,7 +86,9 @@ class ProcessRunner:
                 time.sleep(0.1)
 
             except Exception as e:
-                self.on_output(f"\n‼ Error launching step {self.current_step} '{cmd}': {e}\n")
+                self.on_output(
+                    f"\n‼ Error launching step {self.current_step} '{cmd}': {e}\n"
+                )
                 if self.is_running:
                     self.on_output("🛑 Stopping execution due to error.\n")
                     self.is_running = False
@@ -136,7 +139,7 @@ class ProcessRunner:
                     subprocess.run(
                         ["taskkill", "/PID", str(pid), "/T", "/F"],
                         stdout=subprocess.DEVNULL,
-                        stderr=subprocess.DEVNULL
+                        stderr=subprocess.DEVNULL,
                     )
                 else:
                     # Kill the entire process group

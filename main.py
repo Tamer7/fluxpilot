@@ -8,12 +8,12 @@ from modules.ports_checker import gather_port_entries, PortsPopup
 class LauncherApp(ctk.CTk):
     def __init__(self):
         super().__init__()
-        
+
         # Configure window
         self.title("FluxPilot")
         self.geometry("1000x700")
         self.protocol("WM_DELETE_WINDOW", self._on_close)
-        
+
         # Set theme
         ctk.set_appearance_mode("dark")
         ctk.set_default_color_theme("blue")
@@ -32,9 +32,7 @@ class LauncherApp(ctk.CTk):
 
         # Title
         ctk.CTkLabel(
-            left_frame,
-            text="Profiles",
-            font=ctk.CTkFont(size=16, weight="bold")
+            left_frame, text="Profiles", font=ctk.CTkFont(size=16, weight="bold")
         ).grid(row=0, column=0, padx=10, pady=(10, 5), sticky="w")
 
         # Profile list
@@ -49,25 +47,16 @@ class LauncherApp(ctk.CTk):
         btn_frame.grid_columnconfigure((0, 1, 2), weight=1)
 
         # Add/Edit/Delete buttons
+        ctk.CTkButton(btn_frame, text="Add", width=70, command=self._add_profile).grid(
+            row=0, column=0, padx=2
+        )
+
         ctk.CTkButton(
-            btn_frame,
-            text="Add",
-            width=70,
-            command=self._add_profile
-        ).grid(row=0, column=0, padx=2)
-        
-        ctk.CTkButton(
-            btn_frame,
-            text="Edit",
-            width=70,
-            command=self._edit_profile
+            btn_frame, text="Edit", width=70, command=self._edit_profile
         ).grid(row=0, column=1, padx=2)
-        
+
         ctk.CTkButton(
-            btn_frame,
-            text="Delete",
-            width=70,
-            command=self._delete_profile
+            btn_frame, text="Delete", width=70, command=self._delete_profile
         ).grid(row=0, column=2, padx=2)
 
         # Run button
@@ -76,7 +65,7 @@ class LauncherApp(ctk.CTk):
             text="Run Selected",
             width=230,
             command=self._run_selected_profile,
-            state="disabled"
+            state="disabled",
         )
         self.run_button.grid(row=3, column=0, padx=10, pady=(5, 0), sticky="ew")
 
@@ -87,7 +76,7 @@ class LauncherApp(ctk.CTk):
             width=230,
             fg_color=["#3B8ED0", "#1F6AA5"],  # Original blue color
             hover_color=["#2B7FD9", "#1A5F9C"],  # Original hover color
-            command=self._show_ports
+            command=self._show_ports,
         ).grid(row=4, column=0, padx=10, pady=(5, 5), sticky="ew")
 
         # === Right frame: Notebook for multiple consoles ===
@@ -100,7 +89,7 @@ class LauncherApp(ctk.CTk):
         ctk.CTkLabel(
             right_frame,
             text="Running Profiles",
-            font=ctk.CTkFont(size=16, weight="bold")
+            font=ctk.CTkFont(size=16, weight="bold"),
         ).grid(row=0, column=0, padx=10, pady=(10, 5), sticky="w")
 
         # Notebook frame
@@ -119,30 +108,30 @@ class LauncherApp(ctk.CTk):
         self.placeholder_frame.grid_columnconfigure(0, weight=1)
         self.placeholder_frame.grid_rowconfigure(0, weight=1)
 
-        placeholder_content = ctk.CTkFrame(self.placeholder_frame, fg_color="transparent")
+        placeholder_content = ctk.CTkFrame(
+            self.placeholder_frame, fg_color="transparent"
+        )
         placeholder_content.grid(row=0, column=0)
 
-        ctk.CTkLabel(
-            placeholder_content,
-            text="💻",
-            font=ctk.CTkFont(size=48)
-        ).grid(row=0, column=0, pady=(0, 10))
+        ctk.CTkLabel(placeholder_content, text="💻", font=ctk.CTkFont(size=48)).grid(
+            row=0, column=0, pady=(0, 10)
+        )
 
         ctk.CTkLabel(
             placeholder_content,
             text="No running processes yet",
-            font=ctk.CTkFont(size=18, weight="bold")
+            font=ctk.CTkFont(size=18, weight="bold"),
         ).grid(row=1, column=0, pady=(0, 5))
 
         ctk.CTkLabel(
             placeholder_content,
             text="Select a profile from the left and click 'Run Selected' to start",
             font=ctk.CTkFont(size=12),
-            text_color="gray"
+            text_color="gray",
         ).grid(row=2, column=0)
 
         # Track runners and their tabs
-        self.runners = {}   # run_id -> ProcessRunner
+        self.runners = {}  # run_id -> ProcessRunner
         self.run_tabs = {}  # run_id -> frame
         self.run_counter = 0
         self.selected_profile = None
@@ -164,7 +153,7 @@ class LauncherApp(ctk.CTk):
                 width=200,
                 fg_color=("gray75", "gray30"),  # Default unselected color
                 hover_color=("gray65", "gray40"),  # Hover color
-                command=lambda p=profile: self._select_profile(p)
+                command=lambda p=profile: self._select_profile(p),
             )
             btn.grid(row=i, column=0, padx=5, pady=2, sticky="ew")
             self.profile_buttons[profile["name"]] = btn
@@ -173,11 +162,11 @@ class LauncherApp(ctk.CTk):
         # Deselect all buttons
         for btn in self.profile_buttons.values():
             btn.configure(fg_color=("gray75", "gray30"))  # Default unselected color
-        
+
         # Select the clicked button
         btn = self.profile_buttons[profile["name"]]
         btn.configure(fg_color=("gray65", "gray40"))  # Selected color
-        
+
         self.selected_profile = profile
         self._update_run_button_state()
 
@@ -186,7 +175,10 @@ class LauncherApp(ctk.CTk):
             existing = [p["name"] for p in self.profiles]
             if new_profile["name"] in existing:
                 idx = existing.index(new_profile["name"])
-                if messagebox.askyesno("Overwrite?", f"A profile named '{new_profile['name']}' already exists. Overwrite?"):
+                if messagebox.askyesno(
+                    "Overwrite?",
+                    f"A profile named '{new_profile['name']}' already exists. Overwrite?",
+                ):
                     self.profiles[idx] = new_profile
                 else:
                     return
@@ -239,7 +231,9 @@ class LauncherApp(ctk.CTk):
         # Check if this profile is already running
         for runner in self.runners.values():
             if runner.profile_name == profile_name and runner.is_running:
-                messagebox.showinfo("Info", f"Profile '{profile_name}' is already running.")
+                messagebox.showinfo(
+                    "Info", f"Profile '{profile_name}' is already running."
+                )
                 return
 
         run_id = f"run_{self.run_counter}"
@@ -247,26 +241,24 @@ class LauncherApp(ctk.CTk):
 
         # Create a new tab
         tab = self.notebook.add(f"{profile['name']} ({run_id})")
-        
+
         # Create console frame
         console_frame = ctk.CTkFrame(tab)
         console_frame.pack(fill="both", expand=True, padx=5, pady=5)
-        
+
         # Create console
         console = ctk.CTkTextbox(
-            console_frame,
-            wrap="none",
-            font=ctk.CTkFont(family="Consolas", size=12)
+            console_frame, wrap="none", font=ctk.CTkFont(family="Consolas", size=12)
         )
         console.pack(fill="both", expand=True, padx=5, pady=5)
-        
+
         # Create stop button
         stop_btn = ctk.CTkButton(
             console_frame,
             text="Stop",
             fg_color="#d9534f",
             hover_color="#c9302c",
-            command=lambda rid=run_id: self._stop_run(rid)
+            command=lambda rid=run_id: self._stop_run(rid),
         )
         stop_btn.pack(side="right", padx=5, pady=5)
 
@@ -306,7 +298,7 @@ class LauncherApp(ctk.CTk):
 
         # Check if this profile is already running
         is_running = any(
-            runner.profile_name == self.selected_profile["name"] and runner.is_running 
+            runner.profile_name == self.selected_profile["name"] and runner.is_running
             for runner in self.runners.values()
         )
 
@@ -316,17 +308,21 @@ class LauncherApp(ctk.CTk):
         runner = self.runners.get(run_id)
         if not runner or not runner.is_running:
             return
-        if messagebox.askyesno("Stop", "Are you sure you want to stop this profile run?"):
+        if messagebox.askyesno(
+            "Stop", "Are you sure you want to stop this profile run?"
+        ):
             runner.stop_all()
             self._update_run_button_state()
 
     def _close_tab(self, run_id):
         runner = self.runners.get(run_id)
         if runner and runner.is_running:
-            if not messagebox.askyesno("Close Tab", "This will stop all running processes. Continue?"):
+            if not messagebox.askyesno(
+                "Close Tab", "This will stop all running processes. Continue?"
+            ):
                 return
             runner.stop_all()
-        
+
         # Remove the tab
         tab = self.run_tabs.get(run_id)
         if tab:
@@ -344,7 +340,9 @@ class LauncherApp(ctk.CTk):
         # If any runners still active, confirm and stop them
         active = [rid for rid, runner in self.runners.items() if runner.is_running]
         if active:
-            if not messagebox.askyesno("Exit", "One or more profiles are still running. Exit anyway?"):
+            if not messagebox.askyesno(
+                "Exit", "One or more profiles are still running. Exit anyway?"
+            ):
                 return
             for rid in active:
                 self.runners[rid].stop_all()
