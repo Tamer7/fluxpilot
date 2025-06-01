@@ -2,8 +2,24 @@ import os
 import json
 import customtkinter as ctk
 from tkinter import filedialog, messagebox
+from pathlib import Path
 
-CONFIG_FILE = "config/profiles.json"
+def get_config_dir():
+    """Get the user's config directory for FluxPilot."""
+    if os.name == 'nt':
+        config_dir = Path(os.getenv('APPDATA')) / 'FluxPilot'
+    elif os.name == 'posix':
+        if 'darwin' in os.sys.platform:
+            config_dir = Path.home() / 'Library' / 'Application Support' / 'FluxPilot'
+        else:
+            config_dir = Path.home() / '.config' / 'FluxPilot'
+    else:
+        config_dir = Path.home() / '.fluxpilot'
+    
+    config_dir.mkdir(parents=True, exist_ok=True)
+    return config_dir
+
+CONFIG_FILE = get_config_dir() / "profiles.json"
 
 
 def load_profiles():

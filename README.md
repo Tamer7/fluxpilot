@@ -77,7 +77,13 @@ Here's an example of a typical development profile:
 
 ## Configuration
 
-Profiles are stored in `config/profiles.json`. You can manually edit this file if needed, but it's recommended to use the GUI for profile management.
+Profiles are automatically stored in your system's user data directory:
+
+- **Windows**: `%APPDATA%\FluxPilot\profiles.json`
+- **macOS**: `~/Library/Application Support/FluxPilot/profiles.json`  
+- **Linux**: `~/.config/FluxPilot/profiles.json`
+
+The configuration directory is created automatically when you first run FluxPilot. You can manually edit the profiles.json file if needed, but it's recommended to use the GUI for profile management.
 
 ## Requirements
 
