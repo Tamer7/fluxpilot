@@ -1,0 +1,6 @@
+customtkinter
+psutil
+
+# Development dependencies
+black
+pre-commit
