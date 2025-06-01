@@ -240,22 +240,7 @@ Thanks to these amazing people who have contributed to FluxPilot:
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-### 🚀 Quick Contribution Guide
-
-1. **🍴 Fork the repository**
-2. **🌿 Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **💾 Commit your changes**: `git commit -m 'Add amazing feature'`
-4. **📤 Push to the branch**: `git push origin feature/amazing-feature`
-5. **🔄 Open a Pull Request**
-
-### 📋 Contribution Types
-
-| Type | Description | Icon |
-|------|-------------|------|
-| **🐛 Bug Reports** | Found a bug? Let us know! | [Report Bug](https://github.com/Tamer7/fluxpilot/issues/new?template=bug_report.yml) |
-| **💡 Feature Requests** | Have a cool idea? Share it! | [Request Feature](https://github.com/Tamer7/fluxpilot/issues/new?template=feature_request.yml) |
-| **📖 Documentation** | Help improve our docs | [Contribute Docs](CONTRIBUTING.md) |
-| **💻 Code** | Submit code improvements | [Development Guide](CONTRIBUTING.md) |
+**Want to contribute?** Check out our [Contributing Guide](CONTRIBUTING.md) for detailed information on how to get started!
 
 ## 📄 License
 
