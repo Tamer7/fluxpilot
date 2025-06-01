@@ -230,7 +230,7 @@ Thanks to these amazing people who have contributed to FluxPilot:
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Tamer7"><img src="https://avatars.githubusercontent.com/u/Tamer7?v=4?s=100" width="100px;" alt="Tamer7"/><br /><sub><b>Tamer7</b></sub></a><br /><a href="https://github.com/Tamer7/fluxpilot/commits?author=Tamer7" title="Code">💻</a> <a href="#design-Tamer7" title="Design">🎨</a> <a href="https://github.com/Tamer7/fluxpilot/commits?author=Tamer7" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Tamer7"><img src="https://avatars.githubusercontent.com/u/28959383?v=4?s=100" width="100px;" alt="Tamer7"/><br /><sub><b>Tamer7</b></sub></a><br /><a href="https://github.com/Tamer7/fluxpilot/commits?author=Tamer7" title="Code">💻</a> <a href="#design-Tamer7" title="Design">🎨</a> <a href="https://github.com/Tamer7/fluxpilot/commits?author=Tamer7" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
